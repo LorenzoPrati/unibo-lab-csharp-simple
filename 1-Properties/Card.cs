@@ -7,9 +7,9 @@ namespace Properties
     /// </summary>
     public class Card
     {
-        private readonly string seed;
-        private readonly string name;
-        private readonly int ordinal;
+        private string Seed { get; }
+        private string Name { get; }
+        private int Ordinal { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Card"/> class.
@@ -19,9 +19,9 @@ namespace Properties
         /// <param name="ordinal">the ordinal number of the card.</param>
         public Card(string name, string seed, int ordinal)
         {
-            this.name = name;
-            this.ordinal = ordinal;
-            this.seed = seed;
+            Name = name;
+            Seed = seed;
+            Ordinal = ordinal;
         }
 
         /// <summary>
@@ -31,34 +31,13 @@ namespace Properties
         internal Card(Tuple<string, string, int> tuple) : this(tuple.Item1, tuple.Item2, tuple.Item3)
         {
         }
-
-        // TODO improve
-        public string GetSeed()
-        {
-            return this.seed;
-        }
-
-        // TODO improve
-        public string GetName()
-        {
-            return this.name;
-        }
-
-        // TODO improve
-        public int GetOrdinal()
-        {
-            return this.ordinal;
-        }
-
+        
         /// <inheritdoc cref="object.ToString"/>
-        public override string ToString()
-        {
-            // TODO understand string interpolation
-            return $"{this.GetType().Name}(Name={this.GetName()}, Seed={this.GetSeed()}, Ordinal={this.GetOrdinal()})";
-        }
+        public override string ToString() => $"{GetType().Name}(Name={Name}, Seed={Seed}, Ordinal={Ordinal})";
 
-        // TODO generate Equals(object obj)
+        public override bool Equals(object obj) => obj is Card card && Seed == card.Seed && Name == card.Name;
 
-        // TODO generate GetHashCode()
+        public override int GetHashCode() => HashCode.Combine(Seed, Name, Ordinal);
+
     }
 }
