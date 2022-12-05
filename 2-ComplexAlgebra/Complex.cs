@@ -39,17 +39,18 @@ namespace ComplexAlgebra
         {
             return obj is Complex complex &&
                    Real == complex.Real &&
-                   Imaginary == complex.Imaginary &&
-                   Modulus == complex.Modulus &&
-                   Phase == complex.Phase;
+                   Imaginary == complex.Imaginary;
         }
 
-        public override string ToString() => "Real = " + Real + " Imaginary = " + Imaginary;
+        public override string ToString() => Imaginary == 0
+            ? Real + ""
+            : (Real == 0 ? "" : Real)
+                + (Real != 0 && Imaginary > 0 ? "+" : "")
+                + (Imaginary == 1 ? "" : (Imaginary == -1 ? "-" : Imaginary + "")) + "i";
 
         public double Modulus => Math.Sqrt(Math.Pow(Real, 2) + Math.Pow(Imaginary, 2));
 
         public double Phase => Math.Atan(Imaginary / Real);
-
 
     }
 }
