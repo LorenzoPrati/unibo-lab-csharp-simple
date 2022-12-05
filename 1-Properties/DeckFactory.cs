@@ -10,7 +10,6 @@ namespace Properties
     public class DeckFactory
     {
         private string[] _seeds;
-
         private string[] _names;
 
         public IList<string> Seeds 
