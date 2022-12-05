@@ -48,9 +48,13 @@ namespace ComplexAlgebra
                 + (Real != 0 && Imaginary > 0 ? "+" : "")
                 + (Imaginary == 1 ? "" : (Imaginary == -1 ? "-" : Imaginary + "")) + "i";
 
+        public override int GetHashCode() => HashCode.Combine(Real, Imaginary, Modulus, Phase);
+
         public double Modulus => Math.Sqrt(Math.Pow(Real, 2) + Math.Pow(Imaginary, 2));
 
         public double Phase => Math.Atan(Imaginary / Real);
+
+
 
     }
 }
