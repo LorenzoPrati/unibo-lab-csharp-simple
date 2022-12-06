@@ -22,7 +22,8 @@ namespace ComplexAlgebra
     {
         public double Real { get; set; }
         public double Imaginary { get; set; }
-
+        public double Modulus => Math.Sqrt(Math.Pow(Real, 2) + Math.Pow(Imaginary, 2));
+        public double Phase => Math.Atan(Imaginary / Real);
         public Complex(double re, double im)
         {
             Real = re;
@@ -36,7 +37,7 @@ namespace ComplexAlgebra
         public Complex Minus(Complex c) => new Complex(Real - c.Real, Imaginary - c.Imaginary);
 
         public bool Equals(Complex c) => Real == c.Real && Imaginary == c.Imaginary;
-      
+
         public override string ToString() => Imaginary == 0
             ? Real + ""
             : (Real == 0 ? "" : Real)
@@ -44,12 +45,6 @@ namespace ComplexAlgebra
                 + (Imaginary == 1 ? "" : (Imaginary == -1 ? "-" : Imaginary + "")) + "i";
 
         public override int GetHashCode() => HashCode.Combine(Real, Imaginary, Modulus, Phase);
-
-        public double Modulus => Math.Sqrt(Math.Pow(Real, 2) + Math.Pow(Imaginary, 2));
-
-        public double Phase => Math.Atan(Imaginary / Real);
-
-
 
     }
 }
