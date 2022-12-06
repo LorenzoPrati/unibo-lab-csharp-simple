@@ -24,6 +24,7 @@ namespace ComplexAlgebra
         public double Imaginary { get; set; }
         public double Modulus => Math.Sqrt(Math.Pow(Real, 2) + Math.Pow(Imaginary, 2));
         public double Phase => Math.Atan(Imaginary / Real);
+        
         public Complex(double re, double im)
         {
             Real = re;
