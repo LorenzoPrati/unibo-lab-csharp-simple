@@ -20,11 +20,11 @@ namespace ComplexAlgebra
     /// TODO:     - e.g. via the Equals(object) method
     public class Complex
     {
-        public double Real { get; set; }
-        public double Imaginary { get; set; }
+        public double Real { get; }
+        public double Imaginary { get; }
         public double Modulus => Math.Sqrt(Math.Pow(Real, 2) + Math.Pow(Imaginary, 2));
         public double Phase => Math.Atan(Imaginary / Real);
-        
+
         public Complex(double re, double im)
         {
             Real = re;
