@@ -59,13 +59,20 @@ namespace Indexers
         }
 
         /// <inheritdoc cref="IEquatable{T}.Equals(T)" />
-        public bool Equals(Map2D<TKey1, TKey2, TValue> obj) => _data.Equals(obj._data);
+        public bool Equals(Map2D<TKey1, TKey2, TValue> obj) => Equals(_data, obj._data);
 
         /// <inheritdoc cref="object.Equals(object?)" />
-        public bool Equals(IMap2D<TKey1, TKey2, TValue> other)
+        public override bool Equals(object obj)
         {
-            // TODO: improve
-            return base.Equals(other);
+            if (obj == this)
+            {
+                return true;
+            }
+            if (obj == null || obj.GetType() != this.GetType())
+            {
+                return false;
+            }
+            return this.Equals(obj as Map2D<TKey1, TKey2, TValue>);
         }
 
         /// <inheritdoc cref="object.GetHashCode"/>
@@ -80,6 +87,15 @@ namespace Indexers
         {
             return string.Join(", ", GetElements()
                 .Select(e => $"({e.Item1}, {e.Item2}) -> {e.Item3})"));
+        }
+
+        public bool Equals( IMap2D<TKey1, TKey2, TValue> other)
+        {
+            if (other is Map2D<TKey1, TKey2, TValue> otherMap)
+            {
+                return this.Equals(otherMap);
+            }
+            return false;
         }
     }
 }
